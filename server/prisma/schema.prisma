@@ -9,3 +9,34 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Drone {
+  serialNumber String     @id
+  model        String
+  manufacturer String
+  mac          String
+  ipv4         String
+  firmware     String
+  positions    Position[]
+  pilot        Pilot?
+}
+
+model Position {
+  x                 Float
+  y                 Float
+  altitude          Float
+  timestamp         DateTime @id
+  drone             Drone    @relation(fields: [droneSerialNumber], references: [serialNumber])
+  droneSerialNumber String
+}
+
+model Pilot {
+  id                String   @id
+  firstName         String
+  lastName          String
+  phoneNumber       String
+  email             String
+  createdAt         DateTime
+  drone             Drone    @relation(fields: [droneSerialNumber], references: [serialNumber])
+  droneSerialNumber String   @unique
+}
