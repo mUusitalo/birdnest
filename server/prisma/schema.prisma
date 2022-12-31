@@ -25,7 +25,7 @@ model Position {
   x                 Float
   y                 Float
   altitude          Float
-  timestamp         DateTime @id
+  timestamp         DateTime @db.Timestamptz(3) @id
   drone             Drone    @relation(fields: [droneSerialNumber], references: [serialNumber])
   droneSerialNumber String
 }
@@ -36,7 +36,7 @@ model Pilot {
   lastName          String
   phoneNumber       String
   email             String
-  createdAt         DateTime
+  createdAt         DateTime @db.Timestamptz(3)
   drone             Drone    @relation(fields: [droneSerialNumber], references: [serialNumber])
   droneSerialNumber String   @unique
 }
