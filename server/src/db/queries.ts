@@ -22,7 +22,7 @@ export async function getDronePaths() {
   })
 }
 
-export async function createDrones(drones: Prisma.DroneCreateManyInput[]) {
+export async function createDronesIfNotExists(drones: Prisma.DroneCreateManyInput[]) {
   return await prisma.drone.createMany({
     data: drones,
   })
