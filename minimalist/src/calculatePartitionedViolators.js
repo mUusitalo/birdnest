@@ -1,4 +1,4 @@
-import { calculateDroneDistances } from './fetchRadarData.js';
+import { calculateDroneDistances } from "./calculateDroneDistances.js";
 import { NDZ_RADIUS } from './utils/config.js';
 import { partition } from './utils/partition.js';
 

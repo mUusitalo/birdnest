@@ -1,6 +1,6 @@
 import { updateExistingViolator } from "./updateViolator.js";
 import { calculatePartitionedViolators } from './calculatePartitionedViolators.js';
-import { mergePilotInfoWithDrone } from './fetching.js';
+import { mergePilotInfoWithDrone } from "./mergePilotInfoWithDrone.js";
 
 export async function getUpdatedViolators(drones, timestamp, currentViolators) {
   const updatedViolators = [...currentViolators]

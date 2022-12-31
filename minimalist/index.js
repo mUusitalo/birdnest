@@ -1,5 +1,5 @@
-import { fetchRadarData } from './src/fetchRadarData.js'
-import { getUpdatedViolators } from './src/updateViolators.js'
+import { fetchRadarData } from "./src/fetching/fetchRadarData.js"
+import { getUpdatedViolators } from './src/getUpdatedViolators.js'
 import { UPDATE_INTERVAL_MILLISECONDS } from './src/utils/config.js'
 
 var currentViolators = []

@@ -3,6 +3,7 @@ const PILOT_API_BASE_URL = 'https://assignments.reaktor.com/birdnest/pilots/'
 const NDZ_RADIUS = 100000
 const NDZ_CENTER = { x: 250000, y: 250000 }
 const UPDATE_INTERVAL_MILLISECONDS = 2000
+const VIOLATOR_PERSISTANCE_MILLISECONDS = 60_000 * 10
 
 export {
   DRONE_API_URL,
