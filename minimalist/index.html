@@ -1,30 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <script defer="true">
-    const API_URL = "http://localhost:3000/api"
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script defer="true">
+      const API_URL = 'http://localhost:3000/api/violators'
 
-    function update() {
-      fetch(API_URL)
-        .then(response => response.json())
-        .then(json => console.log(json) || JSON.parse(json))
-        .then(data => {
-          const list = document.getElementById("violators-list")
-          list.innerHTML = data
-        })
-    }
+      function violatorToRowString({
+        serialNumber,
+        firstName,
+        lastName,
+        lastSeen,
+        closestDistance,
+      }) {
+        return serialNumber
+          ? `<tr>
+            <td>${serialNumber}</td>
+            <td>${firstName || '-'}</td>
+            <td>${lastName || '-'}</td>
+            <td>${lastSeen.toLocaleTimeString()}</td>
+            <td>${closestDistance || '-'}</td>
+          </tr>
+          `
+          : ''
+      }
 
-    setInterval(update, 2000)
-  </script>
+      function update() {
+        fetch(API_URL)
+          .then((response) => response.json())
+          .then((listOfViolators) =>
+            listOfViolators.map(violator => ({
+              ...violator,
+              lastSeen: new Date(violator.lastSeen),
+            }))
+          )
+          .then((listOfViolators) => {
+            listOfViolators.sort((a, b) => b.lastSeen - a.lastSeen)
+            const tableBody = document.getElementById('violators')
+            tableBody.innerHTML =
+              listOfViolators.map(violatorToRowString).join('') ||
+              '<p>No violators found</p>'
+          })
+      }
 
-  <p>NDZ Violators</p>
-  <ul id="violators-list">
-  </ul>
-</body>
+      update()
+      setInterval(update, 2000)
+    </script>
+
+    <p>NDZ Violators</p>
+    <table>
+      <thead>
+        <th>Serial No.</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Last Seen</th>
+        <th>Closest Horizontal Distance</th>
+      </thead>
+      <tbody id="violators"></tbody>
+    </table>
+  </body>
 </html>
