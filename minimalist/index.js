@@ -6,8 +6,12 @@ import http from 'http'
 var currentViolators = []
 
 async function update() {
-  currentViolators = await getRefreshedViolators(currentViolators)
-  console.log(currentViolators)
+  try {
+    currentViolators = await getRefreshedViolators(currentViolators)
+    console.log(currentViolators)
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 http.createServer(async (req, res) => {
