@@ -1,4 +1,4 @@
-import { fetchPilotInfo } from "./fetching/getPilotApiUrl.js";
+import { fetchPilotInfo } from "./fetching/fetchPilotInfo.js";
 
 export async function mergePilotInfoWithDrone(violatingDroneWithDistance, timestamp) {
   const { distance, serialNumber } = violatingDroneWithDistance;
