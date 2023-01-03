@@ -1,5 +1,5 @@
 import { calculateDroneDistances } from "./calculateDroneDistances.js";
-import { NDZ_RADIUS } from './utils/config.js';
+import { NDZ_RADIUS } from '../utils/config.js';
 
 
 export function calculateViolators(drones) {
