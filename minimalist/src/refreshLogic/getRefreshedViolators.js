@@ -1,10 +1,13 @@
+import { fetchRadarData } from '../fetching/fetchRadarData.js'
 import { updateExistingViolator } from "./updateViolator.js";
 import { partitionViolatorsToExistingAndNew } from './partitionViolatorsToExistingAndNew.js';
 import { mergePilotInfoWithDrone } from "./mergePilotInfoWithDrone.js";
 import { removeOldViolators } from "./removeOldViolators.js";
 import { calculateViolators } from "./calculateViolators.js";
 
-export async function getRefreshedViolators(drones, timestamp, currentViolators) {
+export async function getRefreshedViolators(currentViolators) {
+  const [drones, timestamp] = await fetchRadarData()
+
   const updatedViolators = [...currentViolators]
 
   // Calculate which drones are violating the NDZ, then split them to existing violators and new ones
