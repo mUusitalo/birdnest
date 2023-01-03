@@ -1,5 +1,5 @@
-import { calculateEuclideanDistance } from './utils/calculateEuclideanDistance.js';
-import { NDZ_CENTER } from "./utils/config.js";
+import { calculateEuclideanDistance } from '../utils/calculateEuclideanDistance.js';
+import { NDZ_CENTER } from "../utils/config.js";
 
 
 export function calculateDroneDistances(dronesList) {

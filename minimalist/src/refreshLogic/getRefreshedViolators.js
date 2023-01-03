@@ -3,7 +3,7 @@ import { calculatePartitionedViolators } from './calculatePartitionedViolators.j
 import { mergePilotInfoWithDrone } from "./mergePilotInfoWithDrone.js";
 import { removeOldViolators } from "./removeOldViolators.js";
 
-export async function getUpdatedViolators(drones, timestamp, currentViolators) {
+export async function getRefreshedViolators(drones, timestamp, currentViolators) {
   const updatedViolators = [...currentViolators]
 
   const [existingViolators, newViolators] = calculatePartitionedViolators(drones, currentViolators);

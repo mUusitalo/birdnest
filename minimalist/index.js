@@ -1,5 +1,5 @@
 import { fetchRadarData } from "./src/fetching/fetchRadarData.js"
-import { getUpdatedViolators } from './src/getUpdatedViolators.js'
+import { getRefreshedViolators } from './src/refreshLogic/getRefreshedViolators.js'
 import { PORT, UPDATE_INTERVAL_MILLISECONDS } from './src/utils/config.js'
 import fs from 'fs/promises'
 import http from 'http'
@@ -8,7 +8,7 @@ var currentViolators = []
 
 async function update() {
   const [drones, timestamp] = await fetchRadarData()
-  currentViolators = await getUpdatedViolators(drones, timestamp, currentViolators)
+  currentViolators = await getRefreshedViolators(drones, timestamp, currentViolators)
   console.log(currentViolators)
 }
 
