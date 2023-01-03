@@ -1,12 +1,14 @@
 import { updateExistingViolator } from "./updateViolator.js";
-import { calculatePartitionedViolators } from './calculatePartitionedViolators.js';
+import { partitionViolatorsToExistingAndNew } from './partitionViolatorsToExistingAndNew.js';
 import { mergePilotInfoWithDrone } from "./mergePilotInfoWithDrone.js";
 import { removeOldViolators } from "./removeOldViolators.js";
+import { calculateViolators } from "./calculateViolators.js";
 
 export async function getRefreshedViolators(drones, timestamp, currentViolators) {
   const updatedViolators = [...currentViolators]
 
-  const [existingViolators, newViolators] = calculatePartitionedViolators(drones, currentViolators);
+  const violatingDrones = calculateViolators(drones)
+  const [existingViolators, newViolators] = partitionViolatorsToExistingAndNew(violatingDrones, currentViolators);
   
   existingViolators.forEach(existingViolator => updateExistingViolator(currentViolators, existingViolator, timestamp));
   const promises = newViolators.map(newViolator => mergePilotInfoWithDrone(newViolator, timestamp));
