@@ -14,13 +14,14 @@ async function update() {
   }
 }
 
+const indexHtml = await fs.readFile('src/index.html')
+
 http.createServer(async (req, res) => {
   const { url } = req
   switch(url) {
     case "/":
       res.writeHead(200, {'Content-Type': 'text/html'})
-      // Reading the file every time for easier debugging
-      res.write(await fs.readFile('src/index.html'))
+      res.write(indexHtml)
       res.end()
       break
     case "/api/violators":
