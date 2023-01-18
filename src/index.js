@@ -1,5 +1,5 @@
-import { getRefreshedViolators } from './src/refreshLogic/getRefreshedViolators.js'
-import { PORT, UPDATE_INTERVAL_MILLISECONDS } from './src/utils/config.js'
+import { getRefreshedViolators } from './refreshLogic/getRefreshedViolators.js'
+import { PORT, UPDATE_INTERVAL_MILLISECONDS } from './utils/config.js'
 import fs from 'fs/promises'
 import http from 'http'
 
@@ -20,7 +20,7 @@ http.createServer(async (req, res) => {
     case "/":
       res.writeHead(200, {'Content-Type': 'text/html'})
       // Reading the file every time for easier debugging
-      res.write(await fs.readFile('index.html'))
+      res.write(await fs.readFile('src/index.html'))
       res.end()
       break
     case "/api/violators":
