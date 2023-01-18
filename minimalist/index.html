@@ -14,14 +14,17 @@
         serialNumber,
         firstName,
         lastName,
+        email,
+        phoneNumber,
         lastSeen,
         closestDistance,
       }) {
         return serialNumber
           ? `<tr>
             <td>${serialNumber}</td>
-            <td>${firstName || '-'}</td>
-            <td>${lastName || '-'}</td>
+            <td>${[firstName, lastName].filter(Boolean).join(' ') || '-'}</td>
+            <td>${email || '-'}</td>
+            <td>${phoneNumber || '-'}</td>
             <td>${lastSeen.toLocaleTimeString()}</td>
             <td>${closestDistance || '-'}</td>
           </tr>
@@ -55,8 +58,9 @@
     <table>
       <thead>
         <th>Serial No.</th>
-        <th>First Name</th>
-        <th>Last Name</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
         <th>Last Seen</th>
         <th>Closest Horizontal Distance</th>
       </thead>
