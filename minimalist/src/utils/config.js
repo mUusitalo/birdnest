@@ -1,7 +1,7 @@
 const DRONE_API_URL = 'https://assignments.reaktor.com/birdnest/drones'
 const PILOT_API_BASE_URL = 'https://assignments.reaktor.com/birdnest/pilots/'
-const NDZ_RADIUS = 100000
-const NDZ_CENTER = { x: 250000, y: 250000 }
+const NDZ_RADIUS = 100
+const NDZ_CENTER = { x: 250, y: 250 }
 
 /**
  * Updating every 500 milliseconds to decrease the probability of missing an update from the server that updates around every 2 seconds.
